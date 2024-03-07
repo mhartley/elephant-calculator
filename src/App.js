@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+
+import './App.scss';
+import React, {useState, useEffect} from 'react';
+import Navbar from './components/theme/navbar';
+import LocationSearchInput from './components/forms/LocationSearchInput';
+import AddressLookup from './components/screens/AddressLookup';
+import IncentiveViewer from './components/screens/IncentiveViewer';
 
 function App() {
+
+  const [screen, setScreen] = useState("address")
+  const [incentiveData, setIncentiveData] = useState([])
+  const [addressString, setAddressString] = useState(' ')
+
+  const fetchIncentives = (lat, lng) => {
+    fetch(`http://localhost:8000/co-incentives/${lng}/${lat}/`)
+      .then(response => response.json())
+      .then(res => {
+        setIncentiveData(res)
+        setScreen('incentives')
+      })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='wrapper'>
+
+     <Navbar/> 
+
+      {screen == 'address' && 
+        <AddressLookup
+          onLocationSelect={({address, latLng}) => {
+            setAddressString(address)
+            fetchIncentives(latLng.lat, latLng.lng)
+          }}
+        />
+      }
+      {screen == 'incentives' && 
+        <div>
+        <IncentiveViewer
+          data={incentiveData}
+          onBack={() => setScreen('address')}
+          address={addressString}
+        />
+        </div>
+      }
+
     </div>
   );
 }

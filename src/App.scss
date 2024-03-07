@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+@import "./styles/theme.scss";
+@import "../node_modules/bulma/bulma.sass";
+
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+
+.hero {
+
+    &.hpwh-bg-img {
+        background-image: url('https://i.postimg.cc/TPQBh0N3/chewy-3c-AMUE3-YAO8-unsplash.jpg');
+    }
+
+    &.bg-windmill {
+        background-image: url('https://elephantenergy.com/wp-content/uploads/2023/10/timeline-bg.jpg')
+    }
+    
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, .7);
+        background: linear-gradient(70deg, $primary 30%, rgba(255,255,255,0) 100%);
+        z-index: 1;
+
+    }
+
+    > * {
+        z-index: 2;
+    }
+
+    .hero-body {
+        max-width: 90vw;
+    }
+}
+
+
+.suggestion-item {
+    background-color: #fff;
+    cursor: pointer;
+    padding: 1rem;
+    color: $text;
+
+    &.active {
+        background-color: $purple;
+        color: $white;
+    }
+}
+
+
+
+.bg-windmill {
+    background-image: url('https://elephantenergy.com/wp-content/uploads/2023/10/timeline-bg.jpg')
+}
