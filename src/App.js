@@ -13,7 +13,7 @@ function App() {
   const [addressString, setAddressString] = useState(' ')
 
   const fetchIncentives = (lat, lng) => {
-    fetch(`http://localhost:8000/co-incentives/${lng}/${lat}/`)
+    fetch(`http://cleanfi-dev2.us-west-1.elasticbeanstalk.com/co-incentives/${lng}/${lat}/`)
       .then(response => response.json())
       .then(res => {
         setIncentiveData(res)

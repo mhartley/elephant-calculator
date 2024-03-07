@@ -28,7 +28,7 @@ const Navbar = () => {
             <div className="navbar-item">
               <div className="buttons">
                 <a className="button is-primary is-rounded">
-                  <strong>Sign up</strong>
+                  <strong>Chat with a home advisor</strong>
                 </a>
                 <a className="button is-light is-rounded">
                   Log in
